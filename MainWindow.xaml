@@ -1,0 +1,49 @@
+﻿<Window x:Class="Lab_25.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Пральня" Height="450" Width="600">
+    <Window.Resources>
+        <DataTemplate x:Key="PhotoTemplate">
+            <Image Source="{Binding PhotoURL}" Width="70" Height="70"/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Клієнти">
+                <Grid>
+                    <StackPanel>
+                        <Button Content="Додати клієнта" Click="AddClient_Click" Margin="10" FontSize="16"/>
+                        <Button Content="Видалити клієнта" Click="DeleteClient_Click" Margin="10" FontSize="16"/>
+                        <ListView Name="ClientsListView" Margin="10">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ПІБ" DisplayMemberBinding="{Binding FullName}" Width="200"/>
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding PhoneNumber}" Width="150"/>
+                                    <GridViewColumn Header="Фото" CellTemplate="{StaticResource PhotoTemplate}" Width="120"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Замовлення">
+                <Grid>
+                    <StackPanel>
+                        <Button Content="Додати замовлення" Click="AddOrder_Click" Margin="10" FontSize="16"/>
+                        <Button Content="Видалити замовлення" Click="DeleteOrder_Click" Margin="10" FontSize="16"/>
+                        <ListView Name="OrdersListView" Margin="10">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Клієнт" DisplayMemberBinding="{Binding ClientName}" Width="200"/>
+                                    <GridViewColumn Header="Час бронювання" DisplayMemberBinding="{Binding BookingTime}" Width="150"/>
+                                    <GridViewColumn Header="Тип послуги" DisplayMemberBinding="{Binding ServiceType}" Width="100"/>
+                                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding OrderStatus}" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
